@@ -1,0 +1,22 @@
+{
+    "name": "public/class",
+    
+    "require": {
+        "guzzlehttp/guzzle": "^7.5",
+        "symfony/var-dumper": "^6.2",
+        "http-interop/response-sender": "^1.0"
+    },
+    "autoload":
+    {
+        "psr-4":
+        {
+            "Psr7ResponseInterpreter\\":"public/"
+        },
+        "files": [
+            "public/interprete.php"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}

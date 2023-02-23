@@ -14,7 +14,7 @@ class ResponseInterpreter
 	 * @param  array  $headerList [description]
 	 * @return array          
 	 */
-	public function stringifyHeaders(array $headerList):array
+	private function stringifyHeaders(array $headerList):array
 	{
 			$lists=[];
 
@@ -34,13 +34,13 @@ class ResponseInterpreter
 	
 	/**
 	 * Show headers 
-	 * @param  array    $headersList [description]
+	 * 
 	 * @param  Response $response    [description]
 	 * @return [type]                [description]
 	 */
-	private  function interpreteResponseHeaders(array $headersList,Response $response):void
+	private  function interpreteResponseHeaders(Response $response):void
 	{
-		$headers=$this->stringifyHeaders($headersList);
+		$headers=$this->stringifyHeaders($response->getHeaders());
 
 		$protocoleVersion=$response->getProtocolVersion();
 		$statusCode=$response->getStatusCode();
@@ -55,11 +55,11 @@ class ResponseInterpreter
 	}
 
 	/**
-	 * Show body content
+	 * Show body contents
 	 * @param   $body [description]
 	 * @return [type]                [description]
 	 */
-	public function showBodyContent(StreamInterface $body):void
+	private function showBodyContent(StreamInterface $body):void
 	{	
 		if ($body->isSeekable())
 		{
@@ -83,10 +83,9 @@ class ResponseInterpreter
 	 */
 	public function send(Response $response):void
 	{
-		$responseHeader=$response->getHeaders();
 		$body=$response->getBody();
 
-		$this->interpreteResponseHeaders($responseHeader,$response);
+		$this->interpreteResponseHeaders($response);
 		$this->showBodyContent($body);
 	}
 }

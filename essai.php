@@ -6,7 +6,7 @@ use function Psr7ResponseInterpreter\interprete;
 
 require "./vendor/autoload.php";
 
-$r=new Response(200,["Foo1"=>"x-foo1","Foo2"=>"x-foo2"],"tesdddddt" ) ;
+$r=new Response(200,["foo"=>"x-foo"],"essai");
 
 interprete($r);
 
